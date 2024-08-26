@@ -4,7 +4,7 @@ import Header from "@/components/layout/Header";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import * as MediaLibrary from "expo-media-library";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 
 interface AudioFile {
@@ -81,12 +81,12 @@ const LibraryScreen: React.FC = () => {
   }, []);
 
   const handleDownloadClick = ()=>{
-    router.push('/screends/download');
+    router.push('/home/download');
   }
 
   return (
-    <Header isTab title='Thư viện'>
-      <View>
+  
+      <View style={{padding : 20}}>
         <View style={{ display: "flex", flexDirection: "row", gap: 30 }}>
           {/* Favourite */}
           <View style={styles.card}>
@@ -103,9 +103,10 @@ const LibraryScreen: React.FC = () => {
           </TouchableOpacity>
         </View>
 
+
       
       </View>
-    </Header>
+   
   );
 };
 

@@ -4,11 +4,11 @@ import Header from '@/components/layout/Header'
 
 const DiscoverScreend = () => {
   return (
-    <Header title='Khám phá' isTab>
+
     <View>
       <Text>DiscoverScreend</Text>
     </View>
-  </Header>
+
     
   )
 }

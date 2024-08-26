@@ -4,11 +4,11 @@ import Header from "@/components/layout/Header";
 
 const RankingsScreend = () => {
   return (
-    <Header isTab title='Xếp hạng'>
+ 
       <View>
         <Text>RankingsScreend</Text>
       </View>
-    </Header>
+
   );
 };
 

@@ -4,110 +4,110 @@ import Header from "@/components/layout/Header";
 import { useRouter } from "expo-router";
 import * as MediaLibrary from "expo-media-library";
 
-const mockAudioFiles = [
-  {
-    id: "1",
-    filename: "Song 1",
-    duration: 210,
-    uri: "https://example.com/song1.mp3",
-  },
-  {
-    id: "2",
-    filename: "Song 2",
-    duration: 180,
-    uri: "https://example.com/song2.mp3",
-  },
-  {
-    id: "3",
-    filename: "Song 3",
-    duration: 240,
-    uri: "https://example.com/song3.mp3",
-  },
-  {
-    id: "4",
-    filename: "Song 4",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "5",
-    filename: "Song 5",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "6",
-    filename: "Song 6",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "7",
-    filename: "Song 7",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "8",
-    filename: "Song 8",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "9",
-    filename: "Song 8",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "10",
-    filename: "Song 8",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "11",
-    filename: "Song 8",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "12",
-    filename: "Song 12",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "13",
-    filename: "Song 13",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "14",
-    filename: "Song 14",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "15",
-    filename: "Song 19",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "16",
-    filename: "Song 20",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-  {
-    id: "17",
-    filename: "Song 22",
-    duration: 200,
-    uri: "https://example.com/song4.mp3",
-  },
-];
+// const mockAudioFiles = [
+//   {
+//     id: "1",
+//     filename: "Song 1",
+//     duration: 210,
+//     uri: "https://example.com/song1.mp3",
+//   },
+//   {
+//     id: "2",
+//     filename: "Song 2",
+//     duration: 180,
+//     uri: "https://example.com/song2.mp3",
+//   },
+//   {
+//     id: "3",
+//     filename: "Song 3",
+//     duration: 240,
+//     uri: "https://example.com/song3.mp3",
+//   },
+//   {
+//     id: "4",
+//     filename: "Song 4",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "5",
+//     filename: "Song 5",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "6",
+//     filename: "Song 6",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "7",
+//     filename: "Song 7",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "8",
+//     filename: "Song 8",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "9",
+//     filename: "Song 8",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "10",
+//     filename: "Song 8",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "11",
+//     filename: "Song 8",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "12",
+//     filename: "Song 12",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "13",
+//     filename: "Song 13",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "14",
+//     filename: "Song 14",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "15",
+//     filename: "Song 19",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "16",
+//     filename: "Song 20",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+//   {
+//     id: "17",
+//     filename: "Song 22",
+//     duration: 200,
+//     uri: "https://example.com/song4.mp3",
+//   },
+// ];
 
 interface AudioFile {
   id: string;
@@ -141,7 +141,7 @@ const DownloadScreed = () => {
       }));
   
       setAudioFiles({
-        items: mockAudioFiles,
+        items: assets,
         totalCount: media.totalCount,
       });
     } catch (error) {
@@ -198,9 +198,9 @@ const DownloadScreed = () => {
   );
 
   return (
-    <Header title="download">
-   
-        <Text style={{ textAlign: "center" }}>Download</Text>
+    
+   <View style={{}}>
+        
 
         <FlatList
           data={audioFiles.items}
@@ -209,8 +209,9 @@ const DownloadScreed = () => {
           contentContainerStyle={styles.listContainer}
           showsVerticalScrollIndicator={false}
         />
+   </View>
    
-    </Header>
+   
   );
 };
 
@@ -223,6 +224,6 @@ const styles = StyleSheet.create({
     borderBottomColor: "#ddd",
   },
   listContainer: {
-    paddingBottom: 210,
+    paddingBottom: 20,
   },
 });
