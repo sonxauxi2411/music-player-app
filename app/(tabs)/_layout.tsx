@@ -24,28 +24,39 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Thư viện',
+          title: "Thư viện",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <TabBarIcon
+              name={focused ? "home" : "home-outline"}
+              color={color}
+            />
           ),
         }}
-      />
+      >
+          
+      </Tabs.Screen>
 
-<Tabs.Screen
+      <Tabs.Screen
         name="discover"
         options={{
-          title: 'Khám phá',
+          title: "Khám phá",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'disc' : 'disc-outline'} color={color} />
+            <TabBarIcon
+              name={focused ? "disc" : "disc-outline"}
+              color={color}
+            />
           ),
         }}
       />
       <Tabs.Screen
         name="rankings"
         options={{
-          title: 'Xếp hạng',
+          title: "Xếp hạng",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'bar-chart' : 'bar-chart-outline'} color={color} />
+            <TabBarIcon
+              name={focused ? "bar-chart" : "bar-chart-outline"}
+              color={color}
+            />
           ),
         }}
       />
