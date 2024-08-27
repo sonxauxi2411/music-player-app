@@ -4,11 +4,14 @@ import React from "react";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-
+import { useSelector } from "react-redux";
+import { audioPlaySelector } from "@/redux/reducers/audioPlayReducer";
+import { View } from "react-native";
+import FixedCardAudio from "@/components/audioPlay/FixedCardAudio";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
+  const { isShowModalPlay, isFixed } = useSelector(audioPlaySelector);
   return (
     <Tabs
       screenOptions={{
@@ -28,8 +31,6 @@ export default function TabLayout() {
           ),
         }}
       />
-
-  
 
       <Tabs.Screen
         name="discover"

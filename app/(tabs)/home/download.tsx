@@ -1,113 +1,11 @@
-import { Alert, StyleSheet, Text, View, FlatList, ScrollView } from "react-native";
+import { Alert, StyleSheet, Text, View, FlatList, ScrollView, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "@/components/layout/Header";
 import { useRouter } from "expo-router";
 import * as MediaLibrary from "expo-media-library";
+import { Audio } from 'expo-av';
 
-// const mockAudioFiles = [
-//   {
-//     id: "1",
-//     filename: "Song 1",
-//     duration: 210,
-//     uri: "https://example.com/song1.mp3",
-//   },
-//   {
-//     id: "2",
-//     filename: "Song 2",
-//     duration: 180,
-//     uri: "https://example.com/song2.mp3",
-//   },
-//   {
-//     id: "3",
-//     filename: "Song 3",
-//     duration: 240,
-//     uri: "https://example.com/song3.mp3",
-//   },
-//   {
-//     id: "4",
-//     filename: "Song 4",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "5",
-//     filename: "Song 5",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "6",
-//     filename: "Song 6",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "7",
-//     filename: "Song 7",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "8",
-//     filename: "Song 8",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "9",
-//     filename: "Song 8",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "10",
-//     filename: "Song 8",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "11",
-//     filename: "Song 8",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "12",
-//     filename: "Song 12",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "13",
-//     filename: "Song 13",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "14",
-//     filename: "Song 14",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "15",
-//     filename: "Song 19",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "16",
-//     filename: "Song 20",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-//   {
-//     id: "17",
-//     filename: "Song 22",
-//     duration: 200,
-//     uri: "https://example.com/song4.mp3",
-//   },
-// ];
+
 
 interface AudioFile {
   id: string;
@@ -132,7 +30,7 @@ const DownloadScreed = () => {
       const media = await MediaLibrary.getAssetsAsync({
         mediaType: "audio",
       });
-
+      console.log(media)
       const assets: AudioFile[] = media.assets.map((asset) => ({
         id: asset.id,
         filename: asset.filename,
@@ -190,11 +88,24 @@ const DownloadScreed = () => {
     getPermission();
   }, []);
 
+  const handlePlayAudio = async (item : AudioFile)=>{
+   try {
+      // const {sound} = await Audio.Sound.createAsync({uri: item.uri})
+      // await sound.playAsync();
+      // const data = await RNFetchBlob.fs.readFile(item.uri, 'base64');
+      // console.log(data)
+
+      // console.log(metadata);
+   } catch (error) {
+    console.log('err:' , error);
+   }
+  }
+
   const renderItem = ({ item }: { item: AudioFile }) => (
-    <View style={styles.fileItem}>
+    <TouchableOpacity onPress={()=>handlePlayAudio(item)} style={styles.fileItem}>
       <Text>{item.filename}</Text>
       <Text>{item.duration} seconds</Text>
-    </View>
+    </TouchableOpacity>
   );
 
   return (

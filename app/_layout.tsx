@@ -1,41 +1,36 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack, useRouter } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { Stack, useRouter } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect, useState } from "react";
+import "react-native-reanimated";
+import { Provider, useSelector } from "react-redux";
+import { useColorScheme } from "@/hooks/useColorScheme";
+import store from "@/redux/store";
+import { audioPlaySelector } from "@/redux/reducers/audioPlayReducer";
+import FixedCardAudio from "@/components/audioPlay/FixedCardAudio";
+import CustomLayout from "./customLayout";
 
 export default function RootLayout() {
+  const [modalVisible, setModalVisible] = useState(false);
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-  const router = useRouter()
+  // const {isShowModalPlay, isFixed} = useSelector(audioPlaySelector)
+
+  const router = useRouter();
+
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-      router.replace('/discover');
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
-
-
+    router.replace("/discover");
+  }, []);
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack screenOptions={{headerShown : false}}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <CustomLayout />
+      </ThemeProvider>
+    </Provider>
   );
 }
