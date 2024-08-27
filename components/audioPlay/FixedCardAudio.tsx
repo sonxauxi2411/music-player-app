@@ -1,17 +1,42 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { audioPlaySelector, setShowModal } from "@/redux/reducers/audioPlayReducer";
+import {
+  audioPlaySelector,
+  setActionAudioPlay,
+  setShowModal,
+} from "@/redux/reducers/audioPlayReducer";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { actionAudioPlay } from "@/redux/actions/audioPlayAction";
 
 const FixedCardAudio = () => {
-    const dispatch = useDispatch()
-    const {isFixed , isShowModalPlay} = useSelector(audioPlaySelector)
-    const handleShowModal = ()=>{
-        dispatch(setShowModal(!isShowModalPlay))
-    }
+  const dispatch = useDispatch();
+  const { isFixed, isShowModalPlay, isActionPlay } =
+    useSelector(audioPlaySelector);
+
+  const handleShowModal = () => {
+    dispatch(setShowModal(!isShowModalPlay));
+  };
+
+
+  
+  const handleActionAudio = () =>{
+      actionAudioPlay({isActionPlay })
+      dispatch(setActionAudioPlay(!isActionPlay));
+  }
+
   return (
     <TouchableOpacity onPress={handleShowModal} style={styles.card}>
-      <Text>Thông tin card</Text>
+        <View style={{display : "flex" , flexDirection : "row", justifyContent : "space-around"}}>
+        <Text>Thông tin card</Text>
+      <TouchableOpacity onPress={handleActionAudio}>
+        {isActionPlay ? (
+          <FontAwesome name="pause" size={24} color="black" />
+        ) : (
+          <FontAwesome name="play" size={24} color="black" />
+        )}
+      </TouchableOpacity>
+        </View>
     </TouchableOpacity>
   );
 };
@@ -21,7 +46,7 @@ export default FixedCardAudio;
 const styles = StyleSheet.create({
   card: {
     position: "absolute",
-    bottom: 60, 
+    bottom: "7%",
     left: 20,
     right: 20,
     backgroundColor: "#fff",

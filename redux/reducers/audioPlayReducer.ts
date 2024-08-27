@@ -5,11 +5,16 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 type AudioPlay = {
     isShowModalPlay : boolean, 
     isFixed : boolean,
+    playList : any[],
+    isActionPlay : boolean,
 }
 
 const initialState : AudioPlay = {
     isShowModalPlay : false,
-    isFixed : true,
+    isFixed : false,
+    playList : [],
+    isActionPlay: false,
+ 
 }
 
 const audioPlaySlide = createSlice({
@@ -19,6 +24,18 @@ const audioPlaySlide = createSlice({
         setShowModal  :  (state, action : PayloadAction<boolean>) => {
             state.isShowModalPlay = action.payload
 
+        },
+        setFixedShow : (state, action : PayloadAction<boolean>) =>{
+            state.isFixed = action.payload
+        },
+        setPlayAudio :  (state) =>{
+            // state.playList = [...state.playList, action.payload]
+            state.isFixed = true ,
+            state.isActionPlay = true
+            
+        },
+        setActionAudioPlay : (state, action : PayloadAction<boolean>) =>{
+            state.isActionPlay = action.payload
         }
     }
 
@@ -26,6 +43,6 @@ const audioPlaySlide = createSlice({
 
 
 export const audioPlayReducer = audioPlaySlide.reducer
-export const {setShowModal} = audioPlaySlide.actions
+export const {setShowModal , setFixedShow , setPlayAudio , setActionAudioPlay} = audioPlaySlide.actions
 
 export const audioPlaySelector = (state: any) => state.audioPlayReducer

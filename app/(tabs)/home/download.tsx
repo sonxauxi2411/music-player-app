@@ -4,6 +4,9 @@ import Header from "@/components/layout/Header";
 import { useRouter } from "expo-router";
 import * as MediaLibrary from "expo-media-library";
 import { Audio } from 'expo-av';
+import { useDispatch } from "react-redux";
+import { playAudio } from "@/redux/actions/audioPlayAction";
+
 
 
 
@@ -24,13 +27,13 @@ const DownloadScreed = () => {
   });
 
   const router = useRouter();
-
+  const dispatch = useDispatch()
   const getAudioFiles = async () => {
     try {
       const media = await MediaLibrary.getAssetsAsync({
         mediaType: "audio",
       });
-      console.log(media)
+      // console.log(media)
       const assets: AudioFile[] = media.assets.map((asset) => ({
         id: asset.id,
         filename: asset.filename,
@@ -90,11 +93,11 @@ const DownloadScreed = () => {
 
   const handlePlayAudio = async (item : AudioFile)=>{
    try {
+      
       // const {sound} = await Audio.Sound.createAsync({uri: item.uri})
       // await sound.playAsync();
-      // const data = await RNFetchBlob.fs.readFile(item.uri, 'base64');
-      // console.log(data)
-
+      
+      playAudio({dispatch, audio : item})
       // console.log(metadata);
    } catch (error) {
     console.log('err:' , error);
